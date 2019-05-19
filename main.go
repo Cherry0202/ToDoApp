@@ -16,7 +16,7 @@ type Todo struct {
 }
 
 
-//DBマイグレート
+//DBMigrate
 func dbInit(){
 	db, err := gorm.Open("mysql","root@/sample?charset=utf8&parseTime=True&loc=Local")
 
@@ -24,7 +24,7 @@ func dbInit(){
 
 
 	if err != nil {
-		panic("failed to connect database")
+		panic("Failed to connect database")
 	}
 
 	if err == nil {
@@ -38,7 +38,7 @@ func dbInit(){
 func dbInsert(text string, status string) {
 	db, err := gorm.Open("mysql", "root@/sample?charset=utf8&parseTime=True&loc=Local")
 	if err != nil {
-		panic("データベース開けず！（dbInsert)")
+		panic("dbInserteErr")
 	}
 	db.Create(&Todo{Text: text, Status: status})
 	defer db.Close()
@@ -48,7 +48,7 @@ func dbInsert(text string, status string) {
 func dbUpdate(id int, text string, status string) {
 	db, err := gorm.Open("mysql", "root@/sample?charset=utf8&parseTime=True&loc=Local")
 	if err != nil {
-		panic("データベース開けず！（dbUpdate)")
+		panic("dbUpdateErr")
 	}
 	var todo Todo
 	db.First(&todo, id)
@@ -62,7 +62,7 @@ func dbUpdate(id int, text string, status string) {
 func dbDelete(id int) {
 	db, err := gorm.Open("mysql", "root@/sample?charset=utf8&parseTime=True&loc=Local")
 	if err != nil {
-		panic("データベース開けず！（dbDelete)")
+		panic("dbDeleteErr")
 	}
 	var todo Todo
 	db.First(&todo, id)
@@ -74,7 +74,7 @@ func dbDelete(id int) {
 func dbGetAll() []Todo {
 	db, err := gorm.Open("mysql", "root@/sample?charset=utf8&parseTime=True&loc=Local")
 	if err != nil {
-		panic("データベース開けず！(dbGetAll())")
+		panic("dbGetAllErr")
 	}
 	var todos []Todo
 	db.Order("created_at desc").Find(&todos)
@@ -86,7 +86,7 @@ func dbGetAll() []Todo {
 func dbGetOne(id int) Todo {
 	db, err := gorm.Open("mysql", "root@/sample?charset=utf8&parseTime=True&loc=Local")
 	if err != nil {
-		panic("データベース開けず！(dbGetOne())")
+		panic("dbGetOneErr")
 	}
 	var todo Todo
 	db.First(&todo, id)
