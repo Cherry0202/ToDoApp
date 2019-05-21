@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ToDo App/title>
+    <title>ToDo App</title>
 </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/css/uikit.min.css" />
     <!-- UIkit JS -->
@@ -42,33 +42,38 @@
 </nav>
 {{/*nav終了*/}}
 
-    <h2>aaa</h2>
+    <h2>Edit</h2>
 
-    <p>{{.user.ID}}</p>
-    <p>{{.user.Name}}</p>
-    <p>{{.user.Age}}</p>
+{{/*    {{.user.ID}}*/}}
+{{/*    {{.user.Name}}*/}}
+{{/*    {{.user.Age}}*/}}
 
     <form method="post" action="/update/{{.todo.ID}}">
-        <p>内容<input type="text" name="text" size="30" value="{{.todo.Text}}" ></p>
-        <p>状態
-            <select name="status">
-                {{if eq .todo.Status "未実行"}}
-                    <option value="未実行" selected>未実行</option>
-                    <option value="実行中">実行中</option>
-                    <option value="終了">終了</option>
-                {{else if eq .todo.Status "実行中"}}
-                    <option value="未実行">未実行</option>
-                    <option value="実行中" selected>実行中</option>
-                    <option value="終了">終了</option>
-                {{else}}
-                    <option value="未実行">未実行</option>
-                    <option value="実行中">実行中</option>
-                    <option value="終了" selected>終了</option>
-                {{end}}
-            </select>
-        </p>
-        <p><input type="submit" value="Send"></p>
+        <fieldset class="uk-fieldset">
+            <div class="uk-margin">
+                <legend class="uk-legend">Contents</legend>
+                <div class="uk-inline">
+                    <a class="uk-form-icon" href="#" uk-icon="icon: pencil"></a>
+                    <input type="text" name="text" size="30" placeholder="ToDoを入力してください" value="{{.todo.Text}}" class="uk-input" required>
+                </div>
+            </div>
+            <div class="uk-margin">
+                <legend class="uk-legend">Status</legend>
+                <div class="uk-inline">
+                    <select name="status" class="uk-select uk-width-medium">
+                        <option value="未実行">未実行</option>
+                        <option value="実行中">実行中</option>
+                        <option value="終了">終了</option>
+                    </select>
+                </div>
+            </div>
+            <div class="uk-margin">
+                <input type="submit" value="Send" class="uk-button uk-button-primary uk-width-medium">
+            </div>
+        </fieldset>
     </form>
+
+
 </body>
 
 

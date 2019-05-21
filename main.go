@@ -99,6 +99,8 @@ func main() {
 
 
 	router := gin.Default()
+
+	router.Static("/assets", "./assets")
 	router.LoadHTMLGlob("templates/*.html")
 
 	dbInit()
