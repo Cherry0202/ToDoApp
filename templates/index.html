@@ -3,12 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>ToDo App</title>
+    <style type="text/css" media="screen">
+        @import url("../assets/css/index.css");
+    </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/css/uikit.min.css" />
     <!-- UIkit JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/js/uikit.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/js/uikit-icons.min.js"></script>
 </head>
 <body>
+
+
 {{/*nav*/}}
 <nav class="uk-navbar-containe uk-tile-secondary" uk-navbar>
     <div class="uk-navbar-left">
@@ -22,7 +27,7 @@
 
         <ul class="uk-navbar-nav">
             <li>
-                <a href="#">Chisei Yamaguchi</a>
+                <a href="https://cherry0202.github.io/ChiseiYamaguchi-sPortfolio/" target="_blank">Chisei Yamaguchi</a>
 {{/*                <div class="uk-navbar-dropdown">*/}}
 {{/*                    <ul class="uk-nav uk-navbar-dropdown-nav">*/}}
 {{/*                        <li class="uk-active"><a href="#">Active</a></li>*/}}
@@ -39,8 +44,8 @@
     </div>
 </nav>
 {{/*nav終了*/}}
-
-    <div class="uk-background-muted uk-padding uk-panel">
+<div class="wrapper uk-background-muted">
+    <div class="uk-padding uk-panel">
     <form method="post" action="/new">
         <fieldset class="uk-fieldset">
             <div class="uk-margin">
@@ -67,26 +72,27 @@
     </form>
         {{ range .todos }}
         <div class="uk-child-width-expand uk-grid-small uk-width-medium" uk-grid>
-                <div class="uk-width-xlarge uk-margin uk-text-center" uk-grid>
+                <div class="uk-width-xlarge uk-margin uk-text-center">
                     <div class="uk-card uk-card-small uk-card-default uk-card-body uk-card-hover">
                         <div class="uk-card-header">
-                            <h1 class="uk-card-title">内容</h1>
+                            <h1 class="uk-card-title">Contents</h1>
                         </div>
                         <div class="uk-card-body">
                             {{ .Text }}
                         </div>
                         <div class="uk-card-header">
-                        　<h3 class="uk-card-title">状態</h3>
+                        　<h3 class="uk-card-title">Status</h3>
                         </div>
                         <div class="uk-card-body">
                             {{ .Status }}
                         </div>
-                         <button class="uk-button uk-button-primary" onclick="location.href='/detail/{{.ID}}'">編集</button>
-                        <button class="uk-button uk-button-danger" onclick="location.href='/delete_check/{{.ID}}'">削除</button>
+                         <button class="uk-button uk-button-primary" onclick="location.href='/detail/{{.ID}}'">Edit</button>
+                        <button class="uk-button uk-button-danger" onclick="location.href='/delete_check/{{.ID}}'">Delete</button>
                     </div>
                 </div>
         </div>
         {{end}}
     </div>
+</div>
 </body>
 </html>
