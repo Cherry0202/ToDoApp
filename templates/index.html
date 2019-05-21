@@ -3,28 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <title>ToDo App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/css/uikit.min.css" />
+    <!-- UIkit JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/js/uikit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/js/uikit-icons.min.js"></script>
 </head>
 <body>
-    <h2>追加</h2>
-    <form method="post" action="/new">
-        <p>内容<input type="text" name="text" size="30" placeholder="ToDoを入力してください" ></p>
-        <p>状態
-            <select name="status">
-                <option value="未実行">未実行</option>
-                <option value="実行中">実行中</option>
-                <option value="終了">終了</option>
-            </select>
-        </p>
-        <p><input type="submit" value="Send"></p>
-    </form>
+{{/*nav*/}}
+<nav class="uk-navbar-containe uk-tile-secondary" uk-navbar>
+    <div class="uk-navbar-left">
 
-    <ul>
-        {{ range .todos }}
-            <li>内容：{{ .Text }}、状態：{{ .Status }}
-                <label><a href="/detail/{{.ID}}">編集</a></label>
-                <label><a href="/delete_check/{{.ID}}">削除</a></label>
+        <ul class="uk-navbar-nav">
+            <a class="uk-navbar-item uk-logo" href="/">ToDoApp</a>
+        </ul>
+
+    </div>
+    <div class="uk-navbar-right">
+
+        <ul class="uk-navbar-nav">
+            <li>
+                <a href="#">Chisei Yamaguchi</a>
+{{/*                <div class="uk-navbar-dropdown">*/}}
+{{/*                    <ul class="uk-nav uk-navbar-dropdown-nav">*/}}
+{{/*                        <li class="uk-active"><a href="#">Active</a></li>*/}}
+{{/*                        <li><a href="#">Item</a></li>*/}}
+{{/*                        <li class="uk-nav-header">Header</li>*/}}
+{{/*                        <li><a href="#">Item</a></li>*/}}
+{{/*                        <li><a href="#">Item</a></li>*/}}
+{{/*                        <li class="uk-nav-divider"></li>*/}}
+{{/*                        <li><a href="#">Item</a></li>*/}}
+{{/*                    </ul>*/}}
+{{/*                </div>*/}}
             </li>
+        </ul>
+    </div>
+</nav>
+{{/*nav終了*/}}
+
+    <div class="uk-background-muted uk-padding uk-panel">
+    <form method="post" action="/new">
+        <fieldset class="uk-fieldset">
+            <div class="uk-margin">
+                <legend class="uk-legend">Contents</legend>
+                <div class="uk-inline">
+                    <a class="uk-form-icon" href="#" uk-icon="icon: pencil"></a>
+                    <input type="text" name="text" size="30" placeholder="ToDoを入力してください" class="uk-input" required>
+                </div>
+            </div>
+            <div class="uk-margin">
+                <legend class="uk-legend">Status</legend>
+                <div class="uk-inline">
+                <select name="status" class="uk-select uk-width-medium">
+                    <option value="未実行">未実行</option>
+                    <option value="実行中">実行中</option>
+                    <option value="終了">終了</option>
+                </select>
+                </div>
+            </div>
+            <div class="uk-margin">
+                <input type="submit" value="Send" class="uk-button uk-button-primary uk-width-medium">
+            </div>
+        </fieldset>
+    </form>
+        {{ range .todos }}
+        <div class="uk-child-width-expand uk-grid-small uk-width-medium" uk-grid>
+                <div class="uk-width-xlarge uk-margin uk-text-center" uk-grid>
+                    <div class="uk-card uk-card-small uk-card-default uk-card-body uk-card-hover">
+                        <div class="uk-card-header">
+                            <h1 class="uk-card-title">内容</h1>
+                        </div>
+                        <div class="uk-card-body">
+                            {{ .Text }}
+                        </div>
+                        <div class="uk-card-header">
+                        　<h3 class="uk-card-title">状態</h3>
+                        </div>
+                        <div class="uk-card-body">
+                            {{ .Status }}
+                        </div>
+                         <button class="uk-button uk-button-primary" onclick="location.href='/detail/{{.ID}}'">編集</button>
+                        <button class="uk-button uk-button-danger" onclick="location.href='/delete_check/{{.ID}}'">削除</button>
+                    </div>
+                </div>
+        </div>
         {{end}}
-    </ul>
+    </div>
 </body>
 </html>
