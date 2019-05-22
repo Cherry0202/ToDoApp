@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>ToDo App</title>
+    <style type="text/css" media="screen">
+        @import url("../assets/css/delete.css");
+    </style>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/css/uikit.min.css" />
     <!-- UIkit JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/js/uikit.min.js"></script>
@@ -10,6 +14,8 @@
 
 </head>
 <body>
+<div class="uk-tile-muted background">
+
 {{/*nav*/}}
 <nav class="uk-navbar-containe uk-tile-secondary" uk-navbar>
     <div class="uk-navbar-left">
@@ -24,34 +30,58 @@
         <ul class="uk-navbar-nav">
             <li>
                 <a href="#">Chisei Yamaguchi</a>
-                <div class="uk-navbar-dropdown">
-                    <ul class="uk-nav uk-navbar-dropdown-nav">
-                        <li class="uk-active"><a href="#">Active</a></li>
-                        <li><a href="#">Item</a></li>
-                        <li class="uk-nav-header">Header</li>
-                        <li><a href="#">Item</a></li>
-                        <li><a href="#">Item</a></li>
-                        <li class="uk-nav-divider"></li>
-                        <li><a href="#">Item</a></li>
-                    </ul>
-                </div>
             </li>
         </ul>
     </div>
 </nav>
 {{/*nav終了*/}}
+<div class="title_wrapper uk-margin">
+    <h2 class="uk-margin">Delete</h2>
+</div>
+    <div class="title_wrapper">
 
-    <h1>削除確認</h1>
     <p>本当に削除しますか？</p>
-    <ul>
-        <li>内容： {{.todo.Text}}</li>
-        <li>状態： {{.todo.Status}}</li>
-        <li>作成時間： {{.todo.CreatedAt}}</li>
-    </ul>
+    </div>
+    <div class="wrapper">
+
+        <div class="uk-child-width-expand uk-grid-small uk-width-medium" uk-grid>
+            <div class="uk-width-xxlarge uk-margin uk-text-center">
+                <div class="uk-card uk-card-small uk-card-default uk-card-body uk-card-hover">
+                    <div class="uk-card-header">
+                        <h1 class="uk-card-title">Contents</h1>
+                    </div>
+                    <div class="uk-card-body">
+                        {{ .todo.Text }}
+                    </div>
+                    <div class="uk-card-header">
+                        　<h3 class="uk-card-title">Status</h3>
+                    </div>
+                    <div class="uk-card-body">
+                        {{ .todo.Status }}
+                    </div>
+                    <div class="uk-card-header">
+                        　<h3 class="uk-card-title">Created At</h3>
+                    </div>
+                    <div class="uk-card-body">
+                        {{ .todo.CreatedAt }}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="title_wrapper uk-margin">
 
     <form method="post" action="/delete/{{.todo.ID}}">
-        <p><input type="submit" value="削除"></p>
-        <p><a href="/">戻る</a></p>
+        <fieldset class="uk-fieldset">
+            <div class="uk-margin">
+                <input type="submit" value="削除" class="uk-button uk-button-danger uk-width-medium">
+            </div>
+        </fieldset>
     </form>
+
+    </div>
+</div>
 </body>
 </html>
