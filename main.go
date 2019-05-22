@@ -100,7 +100,9 @@ func main() {
 
 	router := gin.Default()
 
+	//静的ファイルを有効にする
 	router.Static("/assets", "./assets")
+	//htmlを有効に
 	router.LoadHTMLGlob("templates/*.html")
 
 	dbInit()
